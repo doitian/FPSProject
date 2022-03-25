@@ -6,9 +6,9 @@
 
 void AFPSProjectGameModeBase::StartPlay()
 {
-    Super::StartPlay();
+	Super::StartPlay();
 
-    check(GEngine != nullptr);
+	check(GEngine != nullptr);
 
-    GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, TEXT("Hello world, this is FPSGameMode!"));
+	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, TEXT("Hello world, this is FPSGameMode!"));
 }
