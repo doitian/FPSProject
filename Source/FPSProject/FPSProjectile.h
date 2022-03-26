@@ -2,14 +2,13 @@
 
 #pragma once
 
+#include "Components/SphereComponent.h"
+#include "Components/StaticMeshComponent.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "GameFramework/ProjectileMovementComponent.h"
-#include "Components/SphereComponent.h"
-#include "Components/StaticMeshComponent.h"
 
 #include "FPSProjectile.generated.h"
-
 
 UCLASS()
 class FPSPROJECT_API AFPSProjectile : public AActor
@@ -42,4 +41,9 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	void FireInDirection(const FVector& ShootDirection);
+
+	// Function that is called when the projectile hits something.
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse,
+		const FHitResult& Hit);
 };

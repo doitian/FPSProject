@@ -17,6 +17,7 @@ AFPSProjectile::AFPSProjectile()
 
 		CollisionComponent->SetSphereRadius(15.f);
 		CollisionComponent->BodyInstance.SetCollisionProfileName(TEXT("Projectile"));
+		CollisionComponent->OnComponentHit.AddDynamic(this, &AFPSProjectile::OnHit);
 		RootComponent = CollisionComponent;
 	}
 
@@ -69,4 +70,15 @@ void AFPSProjectile::Tick(float DeltaTime)
 void AFPSProjectile::FireInDirection(const FVector& ShootDirection)
 {
 	ProjectileMovementComponent->Velocity = ShootDirection * ProjectileMovementComponent->InitialSpeed;
+}
+
+void AFPSProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent,
+	FVector NormalImpulse, const FHitResult& Hit)
+{
+	if (OtherActor != this && OtherComponent->IsSimulatingPhysics())
+	{
+		OtherComponent->AddImpulseAtLocation(ProjectileMovementComponent->Velocity * 100.0f, Hit.ImpactPoint);
+	}
+
+	Destroy();
 }
