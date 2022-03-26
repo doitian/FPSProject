@@ -2,13 +2,12 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
-#include "GameFramework/Character.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "CoreMinimal.h"
+#include "GameFramework/Character.h"
 
 #include "FPSCharacter.generated.h"
-
 
 UCLASS()
 class FPSPROJECT_API AFPSCharacter : public ACharacter
@@ -23,6 +22,13 @@ public:
 	// Mesh for owner
 	UPROPERTY(VisibleDefaultsOnly, Category = "Mesh")
 	USkeletalMeshComponent* FPSMesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GamePlay")
+	FVector MuzzleOffset;
+
+	// Projectile class to spawn.
+	UPROPERTY(EditDefaultsOnly, Category = "Projectile")
+	TSubclassOf<class AFPSProjectile> ProjectileClass;
 
 public:
 	// Sets default values for this character's properties
@@ -50,4 +56,7 @@ public:
 
 	UFUNCTION()
 	void LookUp(float value);
+
+	UFUNCTION()
+	void Fire();
 };

@@ -43,3 +43,8 @@ void AFPSProjectile::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 }
+
+void AFPSProjectile::FireInDirection(const FVector& ShootDirection)
+{
+	ProjectileMovementComponent->Velocity = ShootDirection * ProjectileMovementComponent->InitialSpeed;
+}
