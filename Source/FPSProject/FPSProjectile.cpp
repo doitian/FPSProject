@@ -7,6 +7,15 @@ AFPSProjectile::AFPSProjectile()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	if (CollisionComponent == nullptr)
+	{
+		CollisionComponent = CreateDefaultSubobject<USphereComponent>(TEXT("ProjectileCollisionComponent"));
+		check(CollisionComponent != nullptr);
+
+		CollisionComponent->SetSphereRadius(15.f);
+		RootComponent = CollisionComponent;
+	}
 }
 
 // Called when the game starts or when spawned

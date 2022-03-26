@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Components/SphereComponent.h"
 
 #include "FPSProjectile.generated.h"
 
@@ -12,6 +13,10 @@ UCLASS()
 class FPSPROJECT_API AFPSProjectile : public AActor
 {
 	GENERATED_BODY()
+
+public:
+	UPROPERTY(VisibleDefaultsOnly, Category = "Projectile")
+	USphereComponent* CollisionComponent;
 
 public:
 	// Sets default values for this actor's properties
