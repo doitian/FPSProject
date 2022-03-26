@@ -16,6 +16,7 @@ AFPSProjectile::AFPSProjectile()
 		check(CollisionComponent != nullptr);
 
 		CollisionComponent->SetSphereRadius(15.f);
+		CollisionComponent->BodyInstance.SetCollisionProfileName(TEXT("Projectile"));
 		RootComponent = CollisionComponent;
 	}
 
