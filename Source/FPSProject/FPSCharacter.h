@@ -20,6 +20,10 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	UCameraComponent* FPSCameraComponent;
 
+	// Mesh for owner
+	UPROPERTY(VisibleDefaultsOnly, Category = "Mesh")
+	USkeletalMeshComponent* FPSMesh;
+
 public:
 	// Sets default values for this character's properties
 	AFPSCharacter();

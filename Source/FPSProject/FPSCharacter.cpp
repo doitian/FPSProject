@@ -15,6 +15,16 @@ AFPSCharacter::AFPSCharacter()
 	FPSCameraComponent->SetRelativeLocation(FVector(0.0f, 0.0f, 50.0f + BaseEyeHeight));
 	FPSCameraComponent->bUsePawnControlRotation = true;
 
+	FPSMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("FPSMesh"));
+	check(FPSMesh != nullptr);
+
+	FPSMesh->SetOnlyOwnerSee(true);
+	FPSMesh->SetupAttachment(FPSCameraComponent);
+	// Disable shadows for uniform mesh
+	FPSMesh->bCastDynamicShadow = false;
+	FPSMesh->CastShadow = false;
+	GetMesh()->SetOwnerNoSee(true);
+
 	JumpMaxCount = 2;
 }
 
