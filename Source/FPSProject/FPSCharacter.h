@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Camera/CameraComponent.h"
+#include "Components/CapsuleComponent.h"
 
 #include "FPSCharacter.generated.h"
 
@@ -12,6 +14,11 @@ UCLASS()
 class FPSPROJECT_API AFPSCharacter : public ACharacter
 {
 	GENERATED_BODY()
+
+public:
+	// FPS Camera
+	UPROPERTY(VisibleAnywhere)
+	UCameraComponent* FPSCameraComponent;
 
 public:
 	// Sets default values for this character's properties

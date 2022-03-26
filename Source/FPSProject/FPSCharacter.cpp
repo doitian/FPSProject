@@ -7,6 +7,15 @@ AFPSCharacter::AFPSCharacter()
 {
 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	FPSCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("FPSCamera"));
+	check(FPSCameraComponent != nullptr);
+
+	FPSCameraComponent->SetupAttachment(CastChecked<USceneComponent, UCapsuleComponent>(GetCapsuleComponent()));
+	FPSCameraComponent->SetRelativeLocation(FVector(0.0f, 0.0f, 50.0f + BaseEyeHeight));
+	FPSCameraComponent->bUsePawnControlRotation = true;
+
+	JumpMaxCount = 2;
 }
 
 // Called when the game starts or when spawned
@@ -16,8 +25,6 @@ void AFPSCharacter::BeginPlay()
 
 	check(GEngine != nullptr);
 	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("I'm a FPS Character"));
-
-	JumpMaxCount = 2;
 }
 
 // Called every frame
