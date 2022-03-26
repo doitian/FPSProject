@@ -16,6 +16,8 @@ void AFPSCharacter::BeginPlay()
 
 	check(GEngine != nullptr);
 	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("I'm a FPS Character"));
+
+	JumpMaxCount = 2;
 }
 
 // Called every frame
@@ -33,6 +35,9 @@ void AFPSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 	PlayerInputComponent->BindAxis(TEXT("MoveRight"), this, &AFPSCharacter::MoveRight);
 	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &AFPSCharacter::Turn);
 	PlayerInputComponent->BindAxis(TEXT("LookUp"), this, &AFPSCharacter::LookUp);
+
+	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &AFPSCharacter::Jump);
+	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Released, this, &AFPSCharacter::StopJumping);
 }
 
 void AFPSCharacter::MoveForward(float value)
