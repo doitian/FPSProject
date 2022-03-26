@@ -4,7 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+
 #include "FPSCharacter.generated.h"
+
 
 UCLASS()
 class FPSPROJECT_API AFPSCharacter : public ACharacter
@@ -19,11 +21,16 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UFUNCTION()
+	void MoveForward(float value);
+
+	UFUNCTION()
+	void MoveRight(float value);
 };
