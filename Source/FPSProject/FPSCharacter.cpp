@@ -31,6 +31,8 @@ void AFPSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 
 	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &AFPSCharacter::MoveForward);
 	PlayerInputComponent->BindAxis(TEXT("MoveRight"), this, &AFPSCharacter::MoveRight);
+	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &AFPSCharacter::Turn);
+	PlayerInputComponent->BindAxis(TEXT("LookUp"), this, &AFPSCharacter::LookUp);
 }
 
 void AFPSCharacter::MoveForward(float value)
@@ -43,4 +45,14 @@ void AFPSCharacter::MoveRight(float value)
 {
 	FVector Direction = FRotationMatrix(Controller->GetControlRotation()).GetScaledAxis(EAxis::Y);
 	AddMovementInput(Direction, value);
+}
+
+void AFPSCharacter::Turn(float value)
+{
+	AddControllerYawInput(value);
+}
+
+void AFPSCharacter::LookUp(float value)
+{
+	AddControllerPitchInput(value);
 }

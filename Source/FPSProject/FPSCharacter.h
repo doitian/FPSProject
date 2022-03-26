@@ -33,4 +33,10 @@ public:
 
 	UFUNCTION()
 	void MoveRight(float value);
+
+	UFUNCTION()
+	void Turn(float value);
+
+	UFUNCTION()
+	void LookUp(float value);
 };
