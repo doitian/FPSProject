@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/SphereComponent.h"
+#include "Components/StaticMeshComponent.h"
 
 #include "FPSProjectile.generated.h"
 
@@ -18,6 +19,12 @@ class FPSPROJECT_API AFPSProjectile : public AActor
 public:
 	UPROPERTY(VisibleDefaultsOnly, Category = "Projectile")
 	USphereComponent* CollisionComponent;
+
+	UPROPERTY(VisibleDefaultsOnly, Category = "Projectile")
+	UStaticMeshComponent* MeshComponent;
+
+	UPROPERTY(VisibleDefaultsOnly, CAtegory = "Projectile")
+	UMaterialInstanceDynamic* MaterialInstance;
 
 	UPROPERTY(VisibleAnywhere, Category = "Movement")
 	UProjectileMovementComponent* ProjectileMovementComponent;
